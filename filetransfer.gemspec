@@ -1,7 +1,7 @@
 exe=[]
 
 Gem::Specification.new do |s|
-  s.name        = 'filetransfer'
+  s.name        = 'tcpfiletransfer'
   s.version     = "0.0.0"
   s.summary     = "Transfer files between linux computers"
   s.description = "An easy way to transfer files over TCP between linux computers"
