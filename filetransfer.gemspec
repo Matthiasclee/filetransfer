@@ -9,8 +9,7 @@ Gem::Specification.new do |s|
   s.description = "An easy way to transfer files over TCP between linux computers"
   s.authors     = ["Matthias Lee"]
   s.email       = 'matthias@matthiasclee.com'
-  s.files       = [
-  ] + exe.map{|i|"bin/#{i}"}
+  s.files       = FileTransfer.file_paths + exe.map{|i|"bin/#{i}"}
   s.executables = exe
   s.require_paths = ["lib"]
   s.homepage = 'https://github.com/Matthiasclee/filetransfer'
