@@ -1,6 +1,8 @@
 module FileTransfer
   module HTTPserver
     def self.handle_client(initdata, client)
+      path = initdata[1]
+
       read = true
       while read
         x= client.gets
