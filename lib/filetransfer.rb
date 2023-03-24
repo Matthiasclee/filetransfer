@@ -1,5 +1,5 @@
 module FileTransfer
-  @@files = ['server.rb', 'notifier.rb']
+  @@files = ['server.rb', 'notifier.rb', 'httpserver.rb']
 
   def self.version
     "0.0.1"
