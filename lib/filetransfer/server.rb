@@ -7,6 +7,16 @@ module FileTransfer
 
     def start
       @server = TCPServer.new(@listen, @port)
+      loop do
+        Thread.start(@server.accept) do |client|
+          initdata = client.gets.split(" ")
+          if initdata[0] == "GET"
+          elsif initdata[0] == "FTSEND"
+          else
+            client.close
+          end
+        end
+      end
     end
   end
 end
