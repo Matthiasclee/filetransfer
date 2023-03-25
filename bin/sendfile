@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require "filetransfer"
+require "socket"
+
+path = ARGV[0]
+name = path.split("/").last
+
+recipient = $stdin.gets.chomp
+
+server = TCPSocket.new("127.0.0.1", 8021)
+server.puts "FTSUBMIT #{name} #{path}"
+fileid = server.gets
+
+server = TCPSocket.new(recipient, 8021)
+server.puts "FTSEND #{name} 20tb #{fileid}"

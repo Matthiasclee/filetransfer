@@ -14,6 +14,8 @@ module FileTransfer
             HTTPserver.handle_client(initdata, client)
           elsif initdata[0] == "FTSEND"
             FTserver.handle_client(initdata, client)
+          elsif initdata[0] == "FTSUBMIT"
+            FTserver.handle_file_submission(initdata, client)
           else
             client.close
           end

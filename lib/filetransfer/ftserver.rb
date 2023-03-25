@@ -9,6 +9,20 @@ module FileTransfer
       Notifier.file_transfer_notification(filename: filename, source: remote_hostname, filesize: filesize, accept_link: "http://#{remote_ip}:8021/#{fileid}", decline_link: "test")
       client.close
     end
+
+    def self.handle_file_submission(initdata, client)
+      filename = initdata[1]
+      filepath = initdata[2]
+
+      fileid = self.genfileid(6)
+      $active_transfers[?/ + fileid] = {name: filename, path: filepath}
+      client.puts fileid
+      client.close
+    end
+
+    def self.genfileid(length)
+        ((('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a*3).shuffle*((length.to_f/82.0).ceil))[0...length].join
+    end
   end
 end
 
