@@ -12,7 +12,7 @@ Now, create a startup application with the following command:
 bash -ic 'filetransfer_server'
 ```
 
-Now, create `/home/matthias/.local/share/nemo/actions/sendfile.nemo_action` with the following contents:
+Now, create `~/.local/share/nemo/actions/sendfile.nemo_action` with the following contents:
 ```
 [Nemo Action]
 Active=true
