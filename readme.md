@@ -7,9 +7,20 @@ Start by downloading the gem:
 gem install tcpfiletransfer
 ```
 
-Now, add the following line to `~/.bashrc`:
+Now, create a startup application with the following command:
 ```sh
-(filetransfer_server 2> /dev/null &)
+bash -ic 'filetransfer_server'
+```
+
+Now, create `/home/matthias/.local/share/nemo/actions/sendfile.nemo_action` with the following contents:
+```
+[Nemo Action]
+Active=true
+Name=Send file
+Exec=bash -ic "sendfile '%F'"
+Icon-Name=document-send-symbolic
+Selection=s
+Extensions=any;
 ```
 
 ## Usage
@@ -21,7 +32,6 @@ $ sendfile /path/to/file.txt
 Recipient: hostname-or-ip-or-recipient
 ```
 ### Recieving
-To recieve files, ensure `filetransfer_server` is running. If you added the
-line to your `.bashrc`, just make sure a terminal is open. When someone sends
-you a file, you will get a notification with a link to accept it. If you
-click the link, you will be taken to a web browser and the file will download.
+When someone sends you a file, you will get a notification with a link to
+accept it. If you click the link, you will be taken to a web browser and
+the file will download.
