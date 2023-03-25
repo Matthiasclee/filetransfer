@@ -1,6 +1,6 @@
 require_relative "lib/filetransfer.rb"
 
-exe=[]
+exe=['filetransfer_server']
 
 Gem::Specification.new do |s|
   s.name        = 'tcpfiletransfer'

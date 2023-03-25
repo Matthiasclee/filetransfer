@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "filetransfer"
+x=FileTransfer::Server.new
+x.start
