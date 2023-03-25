@@ -2,12 +2,12 @@
 require "filetransfer"
 require "socket"
 
-originalpath = ARGV[0] || `zenity --file-selection`.chomp
+originalpath = ARGV[0] || `zenity --file-selection --title='Send File'`.chomp
 
 path = originalpath.gsub(" ", "`")
 name = originalpath.split("/").last.gsub(" ", "_")
 
-recipient = ARGV[1] || `zenity --text='Recipient' --entry`.chomp
+recipient = ARGV[1] || `zenity --text='Recipient' --entry --title='Send File'`.chomp
 
 server = TCPSocket.new("127.0.0.1", 8021)
 server.puts "FTSUBMIT #{name} #{path}"
