@@ -22,6 +22,7 @@ module FileTransfer
 end
 
 require "socket"
+require "open-uri"
 FileTransfer.file_paths(relative:true).each do |f|
   require_relative f
 end
