@@ -13,6 +13,7 @@ module FileTransfer
           if initdata[0] == "GET"
             HTTPserver.handle_client(initdata, client)
           elsif initdata[0] == "FTSEND"
+            FTserver.handle_client(initdata, client)
           else
             client.close
           end
