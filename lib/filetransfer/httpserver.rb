@@ -1,7 +1,15 @@
 module FileTransfer
   module HTTPserver
     def self.handle_client(initdata, client)
-      path = initdata[1]
+      path = initdata[1].split("/")
+      decline = (path[2] == "decline")
+      path = ?/ + path[1]
+      if decline
+        $active_transfers.delete(path)
+        client.puts "HTTP/1.0 200\r\nContent-Type: text/plain\r\n\r\nTransfer declined"
+        client.close
+        return
+      end
       file = $active_transfers[path]
 
       read = true

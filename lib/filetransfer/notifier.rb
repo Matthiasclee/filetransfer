@@ -10,12 +10,19 @@ module FileTransfer
       x=system("zenity --question --no-wrap --text=\"#{notification_body}\" --title='#{notification_title}'")
       if x
         file_location = `zenity --file-selection --save --filename=#{filename}`
-        return if file_location == ""
+        if file_location == ""
+          f=open(accept_link + "/decline")
+          f.read
+          return
+        end
         open(accept_link) do |f|
           File.open(file_location, "wb") do |file|
             file.write(f.read)
           end
         end
+      else
+        f=open(accept_link + "/decline")
+        f.read
       end
     end
   end
