@@ -1,8 +1,4 @@
 $active_transfers = {
-  "/22gaf" => {
-    name: "test.txt",
-    path: "/home/matthias/test.txt"
-  }
 }
 
 module FileTransfer

@@ -6,13 +6,13 @@ module FileTransfer
       fileid = initdata[3]
       sock_domain, remote_port, remote_hostname, remote_ip = client.peeraddr
 
-      Notifier.file_transfer_notification(filename: filename, source: remote_hostname, filesize: filesize, accept_link: "http://#{remote_ip}:8021/#{fileid}", decline_link: "test")
+      Notifier.file_transfer_notification(filename: filename, source: remote_hostname, filesize: filesize, accept_link: "http://#{remote_ip}:8021/#{fileid}")
       client.close
     end
 
     def self.handle_file_submission(initdata, client)
       filename = initdata[1]
-      filepath = initdata[2]
+      filepath = initdata[2].gsub("`", " ")
 
       fileid = self.genfileid(6)
       $active_transfers[?/ + fileid] = {name: filename, path: filepath}

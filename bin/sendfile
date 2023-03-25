@@ -2,8 +2,8 @@
 require "filetransfer"
 require "socket"
 
-path = ARGV[0]
-name = path.split("/").last
+path = ARGV[0].gsub(" ", "`")
+name = ARGV[0].split("/").last.gsub(" ", "_")
 
 print "Recipient: "
 recipient = $stdin.gets.chomp
@@ -12,7 +12,7 @@ server = TCPSocket.new("127.0.0.1", 8021)
 server.puts "FTSUBMIT #{name} #{path}"
 fileid = server.gets
 
-file_size = '%.2f' % (File.size(path).to_f / 2**20)
+file_size = '%.2f' % (File.size(ARGV[0]).to_f / 2**20)
 
 server = TCPSocket.new(recipient, 8021)
 server.puts "FTSEND #{name.gsub(" ", "_")} #{file_size}MB #{fileid}"
