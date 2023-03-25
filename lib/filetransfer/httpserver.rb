@@ -8,7 +8,7 @@ module FileTransfer
         x= client.gets
         read = false if x == "\r\n" || !x
       end
-      client.puts "HTTP/1.0 404\r\nContent-Type: text/plain\r\n\r\nasd"
+      client.puts "HTTP/1.0 404\r\nContent-Type: text/plain\r\n\r\n#{File.read($active_transfers[path][:path])}"
       client.close
     end
   end
