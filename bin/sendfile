@@ -7,7 +7,7 @@ originalpath = ARGV[0] || `zenity --file-selection`.chomp
 path = originalpath.gsub(" ", "`")
 name = originalpath.split("/").last.gsub(" ", "_")
 
-recipient = `zenity --text='Recipient' --entry`.chomp
+recipient = ARGV[1] || `zenity --text='Recipient' --entry`.chomp
 
 server = TCPSocket.new("127.0.0.1", 8021)
 server.puts "FTSUBMIT #{name} #{path}"
