@@ -7,7 +7,7 @@ module FileTransfer
       notification_command = "notify-send '#{notification_title}' \"#{notification_body}\""
       #system(notification_command)
 
-      x=system("zenity --question --no-wrap --text=\"#{notification_body}\" --title='#{notification_title}'")
+      x=system("zenity --question --icon-name=document-save-symbolic.symbolic --no-wrap --text=\"#{notification_body}\" --title='#{notification_title}'")
       if x
         file_location = `zenity --file-selection --save --filename=#{filename}`
         if file_location == ""
