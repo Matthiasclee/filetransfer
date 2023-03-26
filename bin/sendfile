@@ -7,7 +7,16 @@ originalpath = ARGV[0] || `zenity --file-selection --title='Send File'`.chomp
 path = originalpath.gsub(" ", "`")
 name = originalpath.split("/").last.gsub(" ", "_")
 
-recipient = ARGV[1] || `zenity --text='Recipient' --entry --title='Send File'`.chomp
+recipient = ""
+loop do
+  recipient = ARGV[1] || `zenity --text='Recipient' --entry --title='Send File'`.chomp
+  if recipient == ""
+    hosts = `nmap -Pn -p8021 --open 192.168.0.0/24 | grep -oP '([\\w-]+\\s\\(((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\)|((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4})'`
+    `zenity --info --no-wrap --title="Avalable recipients" --text="#{hosts}"`
+  else
+    break
+  end
+end
 
 server = TCPSocket.new("127.0.0.1", 8021)
 server.puts "FTSUBMIT #{name} #{path}"
