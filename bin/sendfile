@@ -14,6 +14,7 @@ loop do
   exit(1) if $?.exitstatus == 1
 
   if recipient == ""
+    `notify-send 'Please wait, searching for recipients'`
     hosts = `nmap -Pn -p8021 --open 192.168.0.0/24 | grep -oP '([\\w-]+\\s\\(((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\)|((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4})'`
     `zenity --info --no-wrap --title="Avalable recipients" --text="#{hosts}"`
   else
