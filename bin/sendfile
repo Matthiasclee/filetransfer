@@ -10,7 +10,7 @@ name = originalpath.split("/").last.gsub(" ", "_")
 
 recipient = ""
 loop do
-  recipient = ARGV[1] || `zenity --text="Recipient\\nLeave blank to discover available recipients" --entry --title='Send File'`.chomp
+  recipient = ARGV[1] || `zenity --text="Recipient\\n(Leave blank to discover available recipients)" --entry --title='Send File'`.chomp
   exit(1) if $?.exitstatus == 1
 
   if recipient == ""
