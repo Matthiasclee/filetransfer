@@ -3,7 +3,7 @@ require "filetransfer"
 require "socket"
 
 originalpath = ARGV[0] || `zenity --file-selection --title='Send File'`.chomp
-exit(1) if $?.exitstatus == 1
+exit(1) if (!ARGV[0] && $?.exitstatus == 1)
 
 path = originalpath.gsub(" ", "`")
 name = originalpath.split("/").last.gsub(" ", "_")
