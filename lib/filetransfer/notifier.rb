@@ -9,7 +9,7 @@ module FileTransfer
 
       x=system("zenity --question --icon-name=document-save-symbolic.symbolic --no-wrap --text=\"#{notification_body}\" --title='#{notification_title}'")
       if x
-        file_location = `zenity --file-selection --save --filename=#{filename.chomp}`.chomp
+        file_location = `zenity --title="Save file" --file-selection --save --filename=#{filename.chomp}`.chomp
         if file_location == ""
           f=open(accept_link + "/decline")
           f.read
