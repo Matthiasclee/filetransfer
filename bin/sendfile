@@ -10,6 +10,8 @@ name = originalpath.split("/").last.gsub(" ", "_")
 recipient = ""
 loop do
   recipient = ARGV[1] || `zenity --text='Recipient' --entry --title='Send File'`.chomp
+  exit(1) if $?.exitstatus == 1
+
   if recipient == ""
     hosts = `nmap -Pn -p8021 --open 192.168.0.0/24 | grep -oP '([\\w-]+\\s\\(((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\)|((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4})'`
     `zenity --info --no-wrap --title="Avalable recipients" --text="#{hosts}"`
