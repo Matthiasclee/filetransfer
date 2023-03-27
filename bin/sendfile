@@ -10,13 +10,13 @@ name = originalpath.split("/").last.gsub(" ", "_")
 
 recipient = ""
 loop do
-  recipient = ARGV[1] || `zenity --text="Recipient\\n(Leave blank to discover available recipients)" --entry --title='Send File'`.chomp
+  recipient = ARGV[1] || `zenity --text="Recipient\\n(Leave blank to search for available recipients)" --entry --title='Send File'`.chomp
   exit(1) if $?.exitstatus == 1
 
   if recipient == ""
     `nmap -Pn -p8021 --open 192.168.0.0/24 | grep -oP '([\\w-]+\\s\\(((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\)|((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4})' | tee ~/.tmphosts | zenity --progress --pulsate --no-cancel --text="Searcing for available devices" --title="Searching..." --auto-close`
     hosts = File.read("#{Dir.home}/.tmphosts")
-    recipient = `zenity --list --title="Avalable recipients" --column="Available Recipients" #{hosts.split("\n").map{|h|"'#{h}'"}.join(" ")}`.match(/((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/).to_s
+    recipient = `zenity --list --title="Avalable recipients" --text="Choose a device" --column="Available Recipients" #{hosts.split("\n").map{|h|"'#{h}'"}.join(" ")}`.match(/((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/).to_s
     break if recipient != ""
     exit(1) if $?.exitstatus == 1
   else
