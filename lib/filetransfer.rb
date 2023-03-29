@@ -5,7 +5,7 @@ module FileTransfer
   @@files = ['server.rb', 'notifier.rb', 'httpserver.rb', 'ftserver.rb']
 
   def self.version
-    "0.0.5"
+    "0.0.6"
   end
 
   def self.file_paths(relative:false)
