@@ -8,6 +8,11 @@ exit(1) if (!ARGV[0] && $?.exitstatus == 1)
 path = originalpath.gsub(" ", "`")
 name = originalpath.split("/").last.gsub(" ", "_")
 
+if File.directory?(path)
+  `zenity --error --text="Error: #{path} is a folder." --no-wrap --title="Send File"`
+  exit(1)
+end
+
 recipient = ""
 loop do
   recipient = ARGV[1] || `zenity --text="Recipient\\n(Leave blank to search for available recipients)" --entry --title='Send File'`.chomp
