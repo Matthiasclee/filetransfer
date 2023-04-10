@@ -33,8 +33,8 @@ module FileTransfer
         return
       end
 
-      `zenity --info --title="Transfer Accepted" --text="Your transfer to #{remote_hostname} has been accepted." --no-wrap`
       client.puts "HTTP/1.0 200\r\nContent-Length: #{File.size file[:path]}\r\nContent-Type: application/octet-stream\r\nContent-Disposition: attachment; filename=\"#{file[:name]}\"\r\n\r\n#{IO.binread(file[:path])}"
+      `zenity --info --title="Transfer Accepted" --text="Your transfer to #{remote_hostname} has been accepted." --no-wrap`
       $active_transfers.delete(path)
       client.close
     end

@@ -16,6 +16,7 @@ end
 recipient = ""
 loop do
   recipient = ARGV[1] || `zenity --text="Recipient\\n(Leave blank to search for available recipients)" --entry --title='Send File'`.chomp
+  break if ARGV[1]
   exit(1) if $?.exitstatus == 1
 
   if recipient == ""
