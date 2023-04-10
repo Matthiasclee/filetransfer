@@ -15,7 +15,12 @@ module FileTransfer
           elsif initdata[0] == "FTSEND"
             FTserver.handle_client(initdata, client)
           elsif initdata[0] == "FTSUBMIT"
-            FTserver.handle_file_submission(initdata, client)
+            if client.peeraddr[2] == "127.0.0.1"
+              FTserver.handle_file_submission(initdata, client)
+            else
+              client.puts "ERROR FILE_SUBMIT_NOTLOCAL"
+              client.close
+            end
           else
             client.close
           end
