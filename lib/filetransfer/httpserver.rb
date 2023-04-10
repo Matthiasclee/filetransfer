@@ -27,6 +27,12 @@ module FileTransfer
         return
       end
 
+      if client.peeraddr[2] != file[:dest_ip]
+        client.puts "HTTP/1.0 403\r\nContent-Type: text/plain\r\n\r\nRequest from forbidden IP."
+        client.close
+        return
+      end
+
       `zenity --info --title="Transfer Accepted" --text="Your transfer to #{remote_hostname} has been accepted." --no-wrap`
       client.puts "HTTP/1.0 200\r\nContent-Type: application/octet-stream\r\nContent-Disposition: attachment; filename=\"#{file[:name]}\"\r\n\r\n#{File.read(file[:path])}"
       $active_transfers.delete(path)

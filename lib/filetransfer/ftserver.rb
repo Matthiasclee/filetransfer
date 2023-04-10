@@ -13,9 +13,10 @@ module FileTransfer
     def self.handle_file_submission(initdata, client)
       filename = initdata[1]
       filepath = initdata[2].gsub("`", " ")
+      dest_ip = initdata[3]
 
       fileid = self.genfileid(6)
-      $active_transfers[?/ + fileid] = {name: filename, path: filepath}
+      $active_transfers[?/ + fileid] = {name: filename, path: filepath, dest_ip: dest_ip}
       client.puts fileid
       client.close
     end

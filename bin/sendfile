@@ -29,8 +29,10 @@ loop do
   end
 end
 
+recipient = IPSocket.getaddress(recipient)
+
 server = TCPSocket.new("127.0.0.1", 8021)
-server.puts "FTSUBMIT #{name} #{path}"
+server.puts "FTSUBMIT #{name} #{path} #{recipient}"
 fileid = server.gets
 
 file_size = '%.2f' % (File.size(originalpath).to_f / 2**20)
