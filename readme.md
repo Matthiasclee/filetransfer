@@ -25,7 +25,6 @@ Extensions=any;
 ```
 
 ## Usage
-*Note: For all usage, a terminal window must be running.*
 ### Sending
 To send files, use the `sendfile` commad:
 ```
