@@ -2,17 +2,18 @@
 A utility similar to airdrop for transferring files between linux systems.
 
 ## Installation and Setup
-Start by downloading the gem:
+#### Download the gem
 ```sh
 gem install tcpfiletransfer
 ```
 
-Now, create a startup application with the following command:
+#### Make the server launch on startup
+Create a startup program with the following command:
 ```sh
 bash -ic 'filetransfer_server'
 ```
-
-Now, create `~/.local/share/nemo/actions/sendfile.nemo_action` with the following contents:
+#### Add right click action [nemo only]
+Create `~/.local/share/nemo/actions/sendfile.nemo_action`:
 ```
 [Nemo Action]
 Active=true
