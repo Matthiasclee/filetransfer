@@ -8,8 +8,7 @@ exit(1) if (!ARGV[0] && $?.exitstatus == 1)
 if File.directory?(originalpath)
   name = originalpath.split("/").last.gsub(" ", "_")
   newpath = "/tmp/#{name}.zip"
-  STDOUT.puts "zip \"#{newpath}\" \"#{originalpath}\" -r"
-  `zip "#{newpath}" "#{originalpath}" -r`
+  `cd #{File.dirname(originalpath)}; zip "#{newpath}" "#{name}" -r`
   originalpath = newpath
 end
 
