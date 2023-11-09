@@ -15,13 +15,13 @@ module FileTransfer
           f.read
           return
         end
-        open(accept_link) do |f|
+        URI.open(accept_link) do |f|
           File.open(file_location, "wb") do |file|
             file.write(f.read)
           end
         end
       else
-        f=open(accept_link + "/decline")
+        f=URI.open(accept_link + "/decline")
         f.read
       end
     end
